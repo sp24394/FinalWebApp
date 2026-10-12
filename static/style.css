@@ -1,0 +1,12 @@
+* {
+    --theme-1: #363d4a;
+    --theme-2: #252b34;
+}
+
+body {
+    background-color: var(--theme-2);
+}
+
+header {
+    background-color: var(--theme-1);
+}
