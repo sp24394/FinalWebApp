@@ -7,10 +7,19 @@
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
     <link rel="shortcut icon" href="static/media/favicon.png" type="image/x-icon">
     <link rel="icon" href="static/media/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <img src="static/media/logo-dark.svg" alt="Godot Logo" height="64px">
+        <a href="/" class="logo">
+            <img src="static/media/logo-dark.svg" alt="Godot Logo" height="52px" style="margin: 10px 0;">
+        </a>
+        <div id="header-links">
+            <a href="{{url_for('forum')}}">Forum</a>
+            <a href="{{url_for('download_page')}}" class="highlighted">Download</a>
+        </div>
     </header>
     {%block content%}{%endblock%}
 </body>

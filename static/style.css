@@ -1,12 +1,59 @@
 * {
-    --theme-1: #363d4a;
-    --theme-2: #252b34;
+    --accent: #363d4a;
+    --background: #252b34;
+    --primary-color: #4d9fdc;
+
+    --default-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    --header-font: Montserrat;
+
+    font-family: var(--default-font);
+    color: white;
 }
 
 body {
-    background-color: var(--theme-2);
+    background-color: var(--background);
+    margin: 0;
 }
 
 header {
-    background-color: var(--theme-1);
+    background-color: var(--accent);
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#header-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+}
+
+header a:not(.logo) {
+    background-color: transparent;
+    text-decoration: none;
+    padding: 12px 16px;
+    display: block;
+    font-family: var(--header-font);
+}
+
+header a:is(.highlighted) {
+    background-color: var(--primary-color);
+    padding: 12px 22px;
+    display: block;
+    font-family: var(--header-font);
+    border-radius: 8px;
+}
+
+header a:not(.logo, .highlighted):hover {
+    text-decoration: underline;
+}
+
+header a img {
+    transition: 0.2s ease-out all;
+}
+
+header a:has(img):hover img {
+    filter: brightness(1.12);
 }
