@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{%block title%}{%endblock%}</title>
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="shortcut icon" href="static/media/favicon.png" type="image/x-icon">
+    <link rel="icon" href="static/media/favicon.svg" type="image/svg+xml">
 </head>
 <body>
     <header>
-        
+        <img src="static/media/logo-dark.svg" alt="Godot Logo" height="64px">
     </header>
     {%block content%}{%endblock%}
 </body>
