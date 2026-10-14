@@ -24,9 +24,13 @@ def home():
 def forum():
     return "hi"
 
-@app.route("/download")
+@app.route("/releases")
 def download_page():
     return "hi 2"
+
+@app.route("/changelogs")
+def changelogs():
+    return "hi 3"
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -3,7 +3,19 @@
 {%block title%}Godot Engine{%endblock%}
 
 {%block content%}
-<div class="banner-gradient">
-    <img id="random-banner" src="{{url_for('static', filename='media/banners/' ~ range(1, 7) | random ~ '.png')}}" alt="">
+<div class="banner-container">
+    <img id="random-banner" src="{{url_for('static', filename='media/banners/' ~ range(1, 5) | random ~ '.png')}}" alt="">
+    <div class="banner-overlay">
+        <h1>Your free, open-source game engine.</h1>
+        <p style="transform: translateY(-0.5em);">Develop your 2D & 3D games, cross-platform projects, or even XR ideas!</p>
+        <a class="button" style="margin-top: 1.25rem;" href="{{url_for('static', filename='releases/Godot_v4.7.2-stable_win64.exe.zip')}}" download="godot_v4.7.2-stable_win64.zip">
+            <p>Download Latest</p>
+            <p class="version-label">4.7.2</p>
+        </a>
+        <a class="button button-dark" style="margin-top: 0.75rem;" href="url_for('changelogs')">
+            <p>Changelogs</p>
+        </a>
+        <p>Looking for <a href="{{url_for('download_page')}}">other versions</a>?</p>
+    </div>
 </div>
 {%endblock%}
