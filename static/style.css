@@ -22,6 +22,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 10;
 }
 
 #header-links {
@@ -60,7 +61,7 @@ header a:has(img):hover img {
 }
 
 #random-banner {
-    height: min(1400px, 70vh, 140vw);
+    height: min(80vh, 200vw);
     object-fit: cover;
     width: 100%;
     object-position: center;
@@ -83,7 +84,7 @@ header a:has(img):hover img {
 .banner-overlay {
     z-index: 3;
     position: absolute;
-    bottom: 0;
+    bottom: 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -113,7 +114,7 @@ h1 {
     box-shadow: 0px 10px 20px 2px rgba(0,0,0,0.2);
 }
 
-.button p {
+.button span {
     font-family: var(--header-font);
     font-weight: bold;
     color: var(--foreground-back);
@@ -122,12 +123,12 @@ h1 {
     text-align: center;
 }
 
-.button p:not(.version-label) {
+.button span:not(.version-label) {
     margin: 18px 28px;
     flex: 3;
 }
 
-.button .version-label:is(p) {
+.button .version-label:is(span) {
     background-color: var(--primary-color);
     color: white;
     padding: 18px 28px;
@@ -139,6 +140,14 @@ h1 {
     color: white;
 }
 
-.button-dark p {
+.button-dark span {
     color: white;
+}
+
+#tags {
+    width: 300px;
+    border-right: var(--foreground-back) 1px solid;
+    top: 0;
+    bottom: 0;
+    left: 0;
 }

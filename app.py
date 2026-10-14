@@ -20,9 +20,13 @@ def to_home():
 def home():
     return render_template("index.html")
 
+@app.route("/community")
+def community():
+    return redirect(url_for("forum"))
+
 @app.route("/forum")
 def forum():
-    return "hi"
+    return render_template("forum.html")
 
 @app.route("/releases")
 def download_page():
