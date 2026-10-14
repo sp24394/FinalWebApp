@@ -61,7 +61,7 @@ header a:has(img):hover img {
 }
 
 #random-banner {
-    height: min(80vh, 200vw);
+    height: max(min(80vh, 200vw), 30rem);
     object-fit: cover;
     width: 100%;
     object-position: center;
@@ -144,10 +144,30 @@ h1 {
     color: white;
 }
 
-#tags {
-    width: 300px;
-    border-right: var(--foreground-back) 1px solid;
-    top: 0;
-    bottom: 0;
-    left: 0;
+#forum-banner {
+    width: 100%;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+}
+
+#forum-banner img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    object-position: center;
+    display: block;
+}
+
+#forum-banner h1 {
+    position: absolute;
+    bottom: 40%;
+    width: 100%;
+    text-align: center;
+}
+
+h2 {
+    font-family: var(--header-font);
+    width: 100%;
+    text-align: center;
 }
