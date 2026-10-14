@@ -57,3 +57,23 @@ header a img {
 header a:has(img):hover img {
     filter: brightness(1.12);
 }
+
+#random-banner {
+    height: min(1400px, 70vh, 90vw);
+    object-fit: cover;
+    width: 100%;
+    object-position: center;
+    display: block;
+}
+
+.banner-gradient {
+    position: relative;
+}
+
+.banner-gradient::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, #252e3db6, #363d4a31);
+    pointer-events: none;
+}

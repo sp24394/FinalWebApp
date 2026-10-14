@@ -2,4 +2,8 @@
 
 {%block title%}Godot Engine{%endblock%}
 
-{%block content%}hello{%endblock%}
+{%block content%}
+<div class="banner-gradient">
+    <img id="random-banner" src="{{url_for('static', filename='media/banners/' ~ range(1, 7) | random ~ '.png')}}" alt="">
+</div>
+{%endblock%}
