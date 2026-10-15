@@ -13,12 +13,14 @@
 </head>
 <body>
     <header>
-        <a href="/" class="logo">
-            <img src="static/media/logo-dark.svg" alt="Godot Logo" height="52px" style="margin: 10px 0;">
-        </a>
-        <div id="header-links">
-            <a href="{{url_for('community')}}">Community</a>
-            <a href="{{url_for('download_page')}}" class="highlighted">Download</a>
+        <div class="contain-width">
+            <a href="/" class="logo">
+                <img src="static/media/logo-dark.svg" alt="Godot Logo" height="52px" style="margin: 10px 0;">
+            </a>
+            <div id="header-links">
+                <a href="{{url_for('community')}}">Community</a>
+                <a href="{{url_for('download_page')}}" class="highlighted">Download</a>
+            </div>
         </div>
     </header>
     {%block content%}{%endblock%}

@@ -1,16 +1,25 @@
 {%extends 'base.html'%}
 
-{%block title%}Godot Engine{%endblock%}
+{%block title%}Godot Forum{%endblock%}
 
 {%block content%}
 <div style="display: flex;">
-	<div id="post-view">
+	<div id="post-view" style="margin: auto;">
 		<div id="forum-banner">
 			<img src="{{url_for('static', filename='media/forum-bg.png')}}" alt="">
 			<h1>Welcome to Godot Forum!</h1>
 		</div>
 		<h2>Recent Posts</h2>
-		{%if 1 == 1%}<p style="color: rgba(255,255,255,0.6); width: 100%; text-align: center;">No posts yet! Be the first!</p>{%endif%}
+		{%if posts | length < 1%}<p style="color: rgba(255,255,255,0.6); width: 100%; text-align: center;">No posts yet! Be the first!</p>{%endif%}
+		<div id="posts" class="contain-width">
+		{%for post in posts%}
+			<a href="/forum/posts/{{post.post_id}}" class="post{%if min_post == post%} bottom-post{%elif max_post == post%} top-post{%endif%}">
+				<div id="post-{{post.post_id}}">
+					<span class="post-title">{{post.title}}</span>
+				</div>
+			</a>
+		{%endfor%}
+		</div>
 	</div>
 </div>
 {%endblock%}

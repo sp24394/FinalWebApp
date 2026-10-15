@@ -7,10 +7,39 @@ app = Flask(__name__)
 folder = Path(__file__).resolve().parent
 db = "forum.db"
 
+
 def get_db():
     conn = sql.connect(folder/db)
     conn.row_factory = sql.Row
+    conn.execute("pragma foreign_keys = on")
     return conn
+
+def init_db():
+    conn = get_db()
+
+    conn.execute("""create table if not exists forum_posts (
+    post_id integer primary key,
+    posted_unix integer not null default (cast(unixepoch('subsec') * 1000 as integer)),
+    original_poster text not null,
+    title text not null,
+    category text not null default 'General' check(category in ('Announcements', 'Help', 'Showcase', 'Resources', 'General', 'Forum Feedback')),
+    solved integer not null default 0 check(solved in (0, 1))
+    )""")
+    conn.execute("""create table if not exists forum_comments (
+    comment_id integer primary key,
+    post_id integer not null,
+    posted_unix integer not null default (cast(unixepoch('subsec') * 1000 as integer)),
+    author text not null,
+    body text not null,
+    solution integer not null default 0 check(solution in (0, 1)),
+    foreign key (post_id) references forum_posts (post_id)
+    )""")
+    conn.execute("create unique index if not exists single_solution on forum_comments (post_id) where solution = 1")
+
+    conn.commit()
+    conn.close()
+
+init_db()
 
 @app.route("/home")
 def to_home():
@@ -26,7 +55,14 @@ def community():
 
 @app.route("/forum")
 def forum():
-    return render_template("forum.html")
+    conn = get_db()
+    posts = conn.execute("select * from forum_posts order by post_id desc limit 30").fetchall()
+    conn.close()
+    return render_template("forum.html", posts=posts, min_post=posts[-1] if posts else None, max_post=posts[0] if posts else None)
+
+@app.route("/forum/post/<int:pid>")
+def view_forum_post():
+    return pid
 
 @app.route("/releases")
 def download_page():
