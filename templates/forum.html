@@ -15,7 +15,13 @@
 		{%for post in posts%}
 			<a href="/forum/posts/{{post.post_id}}" class="post{%if min_post == post%} bottom-post{%elif max_post == post%} top-post{%endif%}">
 				<div id="post-{{post.post_id}}">
-					<span class="post-title">{{post.title}}</span>
+					<div class="upper-post split">
+						<div style="flex: 2;">
+							<p class="post-title">{{post.title}}</p>
+							<span style="display: flex;"><div class="category-square c-general"></div><p>General<span style="color: rgba(255,255,255,0.6); margin-left: 0.6rem;">@person</span></p></span>
+						</div>
+						<p class="post-label">3 replies<br>active 10d ago</p>
+					</div>
 				</div>
 			</a>
 		{%endfor%}

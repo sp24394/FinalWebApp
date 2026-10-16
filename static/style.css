@@ -183,6 +183,10 @@ h2 {
     text-decoration: none;
 }
 
+.post div {
+    width: 100%;
+}
+
 .post:not(.bottom-post) {
     border-bottom: rgba(255,255,255,0.2) 1px solid;
 }
@@ -201,4 +205,31 @@ h2 {
     gap: 0.5rem;
     display: flex;
     flex-direction: column;
+}
+
+.split {
+    justify-content: space-between;
+    width: 100%;
+    display: flex;
+}
+
+.split p {
+    margin: 0;
+}
+
+.post-label {
+    height: 100%;
+    text-align: right;
+    flex: 1;
+    align-self: center;
+    color: rgba(255,255,255,0.6);
+}
+
+.category-square {
+    height: 0.85rem;
+    max-width: 0.85rem;
+    background-color: plum;
+    margin-right: 0.3rem;
+    align-self: center;
+    border-radius: 20%;
 }
