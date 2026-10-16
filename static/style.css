@@ -228,8 +228,32 @@ h2 {
 .category-square {
     height: 0.85rem;
     max-width: 0.85rem;
-    background-color: plum;
+    background-color: lightgrey;
     margin-right: 0.3rem;
     align-self: center;
     border-radius: 20%;
+}
+
+.c-General {
+    background-color: #8B6CE1;
+}
+
+.c-ForumFeedback {
+    background-color: #fff952;
+}
+
+.c-Announcements {
+    background-color: #ff5d78;
+}
+
+.c-Resources {
+    background-color: #5effc9;
+}
+
+.c-Showcase {
+    background-color: #ff9f5f;
+}
+
+.c-Help {
+    background-color: #50aef7;
 }
