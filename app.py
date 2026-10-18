@@ -82,9 +82,9 @@ def forum():
 
     return render_template("forum.html", posts=posts, min_post=posts[-1] if posts else None, max_post=posts[0] if posts else None)
 
-@app.route("/forum/post/<int:pid>")
-def view_forum_post():
-    return pid
+@app.route("/forum/posts/<int:pid>")
+def view_forum_post(pid):
+    return render_template("post.html")
 
 @app.route("/releases")
 def download_page():
