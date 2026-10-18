@@ -71,11 +71,14 @@ def forum():
     posts = conn.execute("""select p.*, count(c.comment_id) as reply_count, max(c.posted_unix) as active_unix
     from forum_posts p
     left join forum_comments c on p.post_id = c.post_id
-    group by p.post_id order by post_id desc limit 30""").fetchall()
+    group by p.post_id order by active_unix desc limit 30""").fetchall()
+
+    posts = [dict(row) for row in posts]
     conn.close()
 
     for post in posts:
         post["time_ago"] = time_ago(post["posted_unix"])
+        post["active_ago"] = time_ago(post["active_unix"])
 
     return render_template("forum.html", posts=posts, min_post=posts[-1] if posts else None, max_post=posts[0] if posts else None)
 
