@@ -10,10 +10,16 @@
 			<span style="display: flex; margin-bottom: 1rem; margin-top: 0.25rem;"><div class="category-square c-{{post.category | replace(' ', '')}}"></div><span style="color: rgba(255,255,255,0.8);">{{post.category}}</span></span>
 			<div class="comments-list">
 			{%for comment in comments%}
-				<div id="comment-{{post.post_id}}" class="comment {%if comment == max_comment%}bottom-comment{%endif%}" style="padding: 1rem;">
-					<div class="flex">
-						<span><a style="color: rgba(255,255,255,0.6);">@{{comment.author}}</a><span style="margin-left: 0.8rem; color: rgba(255,255,255,0.6);">{{comment.time_ago}}</span></span>
+				<div id="comment-{{post.post_id}}" class="comment {%if comment.solution%}solution{%endif%} {%if comment == max_comment%}bottom-comment{%endif%}" style="padding: 1rem;">
+					<div class="flex"{%if comment.solution%} id="solution"{%endif%}>
+						<span>
+							<a style="color: rgba(255,255,255,0.6);">@{{comment.author}}</a>
+							{%if comment.author == post.original_poster%}<span class="op-label" style="margin-left: 0.1rem;">OP</span>{%endif%}
+							<span style="margin-left: 0.35rem; color: rgba(255,255,255,0.35);">{{comment.time_ago}}</span>
+						</span>
 						<p class="comment-body" style="margin: 0;">{{comment.body}}</p>
+						{%if comment.solution%}<span style="margin-top: 0.3rem;" class="solution-label">✓ Solution</span>{%endif%}
+						{%if loop.index0 == 0%}<span style="margin-top: 0.3rem;" class="solution-label">✓ Solved<a href="#solution" style="font-weight: 500; margin-left: 0.5rem;">Jump to solution</a></span>{%endif%}
 					</div>
 				</div>
 			{%endfor%}

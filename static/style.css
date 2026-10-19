@@ -180,6 +180,7 @@ h2 {
 .post {
     display: block;
     padding: 1rem;
+    padding-bottom: 1.5rem;
     text-decoration: none;
 }
 
@@ -279,4 +280,14 @@ h2 {
 
 .comment-body {
     font-family: var(--default-font);
+}
+
+.op-label {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.solution-label {
+    color: rgb(148, 255, 180);
+    font-weight: bold;
 }
