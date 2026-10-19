@@ -225,6 +225,11 @@ h2 {
     color: rgba(255,255,255,0.6);
 }
 
+.flex {
+    display: flex;
+    flex-direction: column;
+}
+
 .category-square {
     height: 0.85rem;
     max-width: 0.85rem;
@@ -256,4 +261,8 @@ h2 {
 
 .c-Help {
     background-color: #50aef7;
+}
+
+#individual-post-view {
+    width: calc(min(100%, 1000px) - 6rem);
 }

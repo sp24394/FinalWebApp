@@ -1,6 +1,6 @@
 import sqlite3 as sql
 from pathlib import Path
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, abort
 import timeago
 import time
 from datetime import datetime
@@ -84,7 +84,17 @@ def forum():
 
 @app.route("/forum/posts/<int:pid>")
 def view_forum_post(pid):
-    return render_template("post.html")
+    conn = get_db()
+    post = conn.execute("select * from forum_posts where post_id = ?", (pid,)).fetchone()
+    if post is None:
+        abort(404)
+    comments = conn.execute("select * from forum_comments where post_id = ?", (pid,)).fetchall()
+    comments = [dict(row) for row in comments]
+
+    for comment in comments:
+        comment["time_ago"] = time_ago(comment["posted_unix"])
+
+    return render_template("post.html", post=post, comments=comments)
 
 @app.route("/releases")
 def download_page():

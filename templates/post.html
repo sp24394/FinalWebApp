@@ -4,9 +4,20 @@
 
 {%block content%}
 <div style="display: flex;">
-	<div id="individual-post-view" style="margin: auto;">
-		<div id="comments" class="contain-width">
-		
+	<div id="individual-post-view" style="margin: auto; margin-top: 2rem;">
+		<div id="comments" class="contain-width flex">
+			<h2 style="text-align: left;">{{post.title}}</h2>
+			{%for comment in comments%}
+			<div id="post-{{post.post_id}}">
+					<div class="upper-post split">
+						<div style="flex: 2;">
+							<p class="post-title">{{post.title}}</p>
+							<span style="display: flex;"><div class="category-square c-{{post.category | replace(' ', '')}}"></div><p style="color: rgba(255,255,255,0.8);">{{post.category}}<span style="color: rgba(255,255,255,0.6); margin-left: 0.6rem;">@{{post.original_poster}}</span></p></span>
+						</div>
+						<p class="post-label">{{post.reply_count}} replies<br>active {{post.active_ago}}</p>
+					</div>
+				</div>
+			{%endfor%}
 		</div>
 	</div>
 </div>
