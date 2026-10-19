@@ -6,18 +6,18 @@
 <div style="display: flex;">
 	<div id="individual-post-view" style="margin: auto; margin-top: 2rem;">
 		<div id="comments" class="contain-width flex">
-			<h2 style="text-align: left;">{{post.title}}</h2>
+			<h2 style="text-align: left; margin: 0;">{{post.title}}</h2>
+			<span style="display: flex; margin-bottom: 1rem; margin-top: 0.25rem;"><div class="category-square c-{{post.category | replace(' ', '')}}"></div><span style="color: rgba(255,255,255,0.8);">{{post.category}}</span></span>
+			<div class="comments-list">
 			{%for comment in comments%}
-			<div id="post-{{post.post_id}}">
-					<div class="upper-post split">
-						<div style="flex: 2;">
-							<p class="post-title">{{post.title}}</p>
-							<span style="display: flex;"><div class="category-square c-{{post.category | replace(' ', '')}}"></div><p style="color: rgba(255,255,255,0.8);">{{post.category}}<span style="color: rgba(255,255,255,0.6); margin-left: 0.6rem;">@{{post.original_poster}}</span></p></span>
-						</div>
-						<p class="post-label">{{post.reply_count}} replies<br>active {{post.active_ago}}</p>
+				<div id="comment-{{post.post_id}}" class="comment {%if comment == max_comment%}bottom-comment{%endif%}" style="padding: 1rem;">
+					<div class="flex">
+						<span><a style="color: rgba(255,255,255,0.6);">@{{comment.author}}</a><span style="margin-left: 0.8rem; color: rgba(255,255,255,0.6);">{{comment.time_ago}}</span></span>
+						<p class="comment-body" style="margin: 0;">{{comment.body}}</p>
 					</div>
 				</div>
 			{%endfor%}
+			</div>
 		</div>
 	</div>
 </div>

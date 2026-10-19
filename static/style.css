@@ -232,6 +232,7 @@ h2 {
 
 .category-square {
     height: 0.85rem;
+    width: 0.85rem;
     max-width: 0.85rem;
     background-color: lightgrey;
     margin-right: 0.3rem;
@@ -265,4 +266,17 @@ h2 {
 
 #individual-post-view {
     width: calc(min(100%, 1000px) - 6rem);
+}
+
+.comments-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment:not(.bottom-comment) {
+    border-bottom: rgba(255,255,255,0.2) 1px solid;
+}
+
+.comment-body {
+    font-family: var(--default-font);
 }

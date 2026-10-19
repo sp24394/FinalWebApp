@@ -88,13 +88,17 @@ def view_forum_post(pid):
     post = conn.execute("select * from forum_posts where post_id = ?", (pid,)).fetchone()
     if post is None:
         abort(404)
+    post = dict(post)
+    post["time_ago"] = time_ago(post["posted_unix"])
+    
     comments = conn.execute("select * from forum_comments where post_id = ?", (pid,)).fetchall()
     comments = [dict(row) for row in comments]
 
     for comment in comments:
         comment["time_ago"] = time_ago(comment["posted_unix"])
 
-    return render_template("post.html", post=post, comments=comments)
+    max_comment = comments[-1] if comments else None
+    return render_template("post.html", post=post, comments=comments, max_comment=max_comment)
 
 @app.route("/releases")
 def download_page():
