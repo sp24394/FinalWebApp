@@ -19,7 +19,7 @@
 						</span>
 						<p class="comment-body" style="margin: 0;">{{comment.body}}</p>
 						{%if comment.solution%}<span style="margin-top: 0.3rem;" class="solution-label">✓ Solution</span>{%endif%}
-						{%if loop.index0 == 0%}<span style="margin-top: 0.3rem;" class="solution-label">✓ Solved<a href="#solution" style="font-weight: 500; margin-left: 0.5rem;">Jump to solution</a></span>{%endif%}
+						{%if loop.index0 == 0 and post.solved%}<span style="margin-top: 0.3rem;" class="solution-label">✓ Solved<a href="#solution" style="font-weight: 500; margin-left: 0.5rem;">Jump to solution</a></span>{%endif%}
 					</div>
 				</div>
 			{%endfor%}
