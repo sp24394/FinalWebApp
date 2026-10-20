@@ -180,17 +180,18 @@ h2 {
 .post {
     display: block;
     padding: 1rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 1.2rem;
     text-decoration: none;
+    border: rgba(255,255,255,0.2) 1px solid;
 }
 
 .post div {
     width: 100%;
 }
 
-.post:not(.bottom-post) {
+/*.post:not(.bottom-post) {
     border-bottom: rgba(255,255,255,0.2) 1px solid;
-}
+}*/
 
 .contain-width {
     width: min(100%, 1000px);
@@ -272,10 +273,16 @@ h2 {
 .comments-list {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
 }
 
-.comment:not(.bottom-comment) {
+/*.comment:not(.bottom-comment) {
     border-bottom: rgba(255,255,255,0.2) 1px solid;
+}*/
+
+.comment {
+    border: rgba(255,255,255,0.2) 1px solid;
+    transition: ease 0.7s all;
 }
 
 .comment-body {
