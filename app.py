@@ -1,6 +1,6 @@
 import sqlite3 as sql
 from pathlib import Path
-from flask import Flask, render_template, redirect, url_for, abort
+from flask import Flask, render_template, redirect, url_for, abort, request
 import timeago
 import time
 from datetime import datetime
@@ -81,6 +81,10 @@ def forum():
         post["active_ago"] = time_ago(post["active_unix"])
 
     return render_template("forum.html", posts=posts, min_post=posts[-1] if posts else None, max_post=posts[0] if posts else None)
+
+@app.route("/forum/posts/create", methods=["POST"])
+def create_post():
+    print("got data\n", request.form)
 
 @app.route("/forum/posts/<int:pid>")
 def view_forum_post(pid):

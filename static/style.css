@@ -298,3 +298,41 @@ h2 {
     color: rgb(148, 255, 180);
     font-weight: bold;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: calc(min(100%, 1000px) - 6rem);
+    margin: auto;
+    gap: 0.5rem;
+}
+
+input, textarea, select {
+    background-color: var(--foreground-back);
+    border: var(--accent) 1px solid;
+    border-radius: 6px;
+    font-size: 1rem;
+    padding: 0.5rem;
+    resize: vertical;
+}
+
+select {
+    position: relative;
+}
+
+input::placeholder, textarea::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+
+textarea {
+    min-height: 1.3rem;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: var(--primary-color) 1.5px solid;
+}
+
+.submit-button {
+    cursor: pointer;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+}

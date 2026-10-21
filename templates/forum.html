@@ -10,12 +10,24 @@
 			<h1>Welcome to Godot Forum!</h1>
 		</div>
 
-		<div id="compose">
-			<form action="">
-				<input type="text" name="title" placeholder="Post Title">
-				<textarea name="body" id="body" placeholder="W"></textarea>
-			</form>
-		</div>
+		<form action="{{url_for('create_post')}}" method="POST">
+			<input required type="text" name="title" placeholder="Post Title">
+			<textarea required name="body" id="body" placeholder="Write the body of your post here. Make sure it's detailed!"></textarea>
+			<div style="justify-content: space-between; width: 100%; display: flex;">
+				<select name="category" id="category" required>
+					<button>
+						<selectedcontent></selectedcontent>
+					</button>
+					<option value="Help" selected>Help</option>
+					<option value="Showcase">Showcase</option>
+					<option value="Resources">Resources</option>
+					<option value="General">General</option>
+					<option value="Forum Feedback">Forum Feedback</option>
+				</select>
+
+				<input type="submit" name="submit_post" id="submit_post" value="Post" class="submit-button">
+			</div>
+		</form>
 
 		<h2>Recent Posts</h2>
 		{%if posts | length < 1%}<p style="color: rgba(255,255,255,0.6); width: 100%; text-align: center;">No posts yet! Be the first!</p>{%endif%}
