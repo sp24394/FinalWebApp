@@ -107,6 +107,24 @@ def create_post():
 
     return redirect(url_for("view_forum_post", pid=new_pid))
 
+@app.route("/forum/posts/<int:pid>/comment", methods=["POST"])
+def create_comment(pid):
+    body = request.form.get("body")
+    user = "guest"
+    if pid and body and user:
+        conn = get_db()
+        new_cid = conn.execute("""insert into forum_comments
+        (post_id, author, body)
+        values (?,?,?) returning comment_id""",
+        (pid, user, body)).fetchone()["comment_id"]
+        conn.commit()
+        conn.close()
+    else:
+        return redirect(url_for("view_forum_post", pid=pid))
+    
+    return redirect(url_for("view_forum_post", pid=pid, _anchor=f"comment-{new_cid}"))
+
+
 @app.route("/forum/posts/<int:pid>")
 def view_forum_post(pid):
     conn = get_db()

@@ -35,12 +35,16 @@
 								</a>
 							{%endif%}
 							</span>
-							<a href="#reply" style="font-weight: 500;">Reply</a>
+							<a href="#reply" style="font-weight: 500;" onclick="document.getElementById('reply-input').focus()">Reply</a>
 						</span>
 						{%endif%}
 					</div>
 				</div>
 			{%endfor%}
+				<form action="{{url_for('create_comment', pid=post.post_id)}}" method="POST" style="margin-top: 1rem; margin-bottom: 2rem;">
+					<textarea required name="body" id="reply-input" placeholder="Write your comment here."></textarea>
+					<input type="submit" name="submit_post" id="submit_post" value="Post" class="submit-button" style="align-self: flex-end;">
+				</form>
 			</div>
 		</div>
 	</div>

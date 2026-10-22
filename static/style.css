@@ -302,9 +302,16 @@ h2 {
 form {
     display: flex;
     flex-direction: column;
-    width: calc(min(100%, 1000px) - 6rem);
     margin: auto;
     gap: 0.5rem;
+}
+
+form:not(.thin-width) {
+    width: calc(min(100%, 1000px));
+}
+
+.thin-width {
+    width: calc(min(100%, 1000px) - 6rem);
 }
 
 input, textarea, select {
