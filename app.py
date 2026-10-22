@@ -26,7 +26,8 @@ def init_db():
     original_poster text not null,
     title text not null,
     category text not null default 'General' check(category in ('Announcements', 'Help', 'Showcase', 'Resources', 'General', 'Forum Feedback')),
-    solved integer not null default 0 check(solved in (0, 1))
+    solved integer not null default 0 check(solved in (0, 1)),
+    views integer not null default 0
     )""")
     conn.execute("""create table if not exists forum_comments (
     comment_id integer primary key,
@@ -84,7 +85,27 @@ def forum():
 
 @app.route("/forum/posts/create", methods=["POST"])
 def create_post():
-    print("got data\n", request.form)
+    title = request.form.get("title")
+    body = request.form.get("body")
+    category = request.form.get("category")
+    user = "guest"
+    
+    if title and body and category and user:
+        conn = get_db()
+        new_pid = conn.execute("""insert into forum_posts
+        (title, category, original_poster)
+        values (?,?,?) returning post_id""",
+        (title, category, user)).fetchone()["post_id"]
+        conn.execute("""insert into forum_comments
+        (post_id, author, body)
+        values (?,?,?)""",
+        (new_pid, user, body))
+        conn.commit()
+        conn.close()
+    else:
+        return redirect(url_for("forum"))
+
+    return redirect(url_for("view_forum_post", pid=new_pid))
 
 @app.route("/forum/posts/<int:pid>")
 def view_forum_post(pid):
@@ -102,7 +123,12 @@ def view_forum_post(pid):
         comment["time_ago"] = time_ago(comment["posted_unix"])
 
     max_comment = comments[-1] if comments else None
-    return render_template("post.html", post=post, comments=comments, max_comment=max_comment)
+
+    conn.execute("update forum_posts set views = views + 1 where post_id = ?", (pid,))
+    conn.commit()
+    conn.close()
+
+    return render_template("post.html", post=post, comments=comments, max_comment=max_comment, is_new=(post["views"] == 0))
 
 @app.route("/releases")
 def download_page():

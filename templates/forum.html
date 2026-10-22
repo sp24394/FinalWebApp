@@ -13,7 +13,7 @@
 		<form action="{{url_for('create_post')}}" method="POST">
 			<input required type="text" name="title" placeholder="Post Title">
 			<textarea required name="body" id="body" placeholder="Write the body of your post here. Make sure it's detailed!"></textarea>
-			<div style="justify-content: space-between; width: 100%; display: flex;">
+			<div style="justify-content: flex-end; gap: 0.5rem; width: 100%; display: flex;">
 				<select name="category" id="category" required>
 					<button>
 						<selectedcontent></selectedcontent>
@@ -46,7 +46,7 @@
 								</p>
 							</span>
 						</div>
-						<p class="post-label">{{post.reply_count}} replies<br>active {{post.active_ago}}</p>
+						<p class="post-label">{{post.reply_count}} repl{%if post.reply_count == 1%}y{%else%}ies{%endif%}<br>active {{post.active_ago}}</p>
 					</div>
 				</div>
 			</a>

@@ -6,8 +6,13 @@
 <div style="display: flex;">
 	<div id="individual-post-view" style="margin: auto; margin-top: 2rem;">
 		<div id="comments" class="contain-width flex">
+			{%if is_new%}<span class="small-banner">Your post has been submitted!</span>{%endif%}
 			<h2 style="text-align: left; margin: 0;">{{post.title}}</h2>
-			<span style="display: flex; margin-bottom: 1rem; margin-top: 0.25rem;"><div class="category-square c-{{post.category | replace(' ', '')}}"></div><span style="color: rgba(255,255,255,0.8);">{{post.category}}</span></span>
+			<span style="display: flex; margin-bottom: 1rem; margin-top: 0.25rem;">
+				<div class="category-square c-{{post.category | replace(' ', '')}}"></div>
+				<span style="color: rgba(255,255,255,0.8);">{{post.category}}</span>
+				<span style="color: rgba(255,255,255,0.35); margin-left: 1rem;">{{post.views}} view{%if post.views != 1%}s{%endif%}</span>
+			</span>
 			<div class="comments-list">
 			{%for comment in comments%}
 				<div id="comment-{{post.post_id}}" class="comment {%if comment.solution%}solution{%endif%} {%if comment == max_comment%}bottom-comment{%endif%}" style="padding: 1rem;">

@@ -336,3 +336,10 @@ input:focus, textarea:focus, select:focus {
     cursor: pointer;
     padding: 0.5rem 1.5rem 0.5rem 1.5rem;
 }
+
+.small-banner {
+    border: var(--primary-color) 1.5px solid;
+    padding: 1rem;
+    background-color: #4d9fdc30;
+    margin-bottom: 2rem;
+}
