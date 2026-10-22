@@ -72,7 +72,7 @@ def forum():
     posts = conn.execute("""select p.*, count(c.comment_id) as reply_count, max(c.posted_unix) as active_unix
     from forum_posts p
     left join forum_comments c on p.post_id = c.post_id
-    group by p.post_id order by active_unix desc limit 30""").fetchall()
+    group by p.post_id order by active_unix desc""").fetchall()
 
     posts = [dict(row) for row in posts]
     conn.close()

@@ -24,12 +24,19 @@
 						</span>
 						<p class="comment-body" style="margin: 0;">{{comment.body}}</p>
 						{%if comment.solution%}<span style="margin-top: 0.3rem;" class="solution-label">✓ Solution</span>{%endif%}
-						{%if loop.index0 == 0 and post.solved%}
-						<span style="margin-top: 0.3rem;" class="solution-label">✓ Solved
-							<a href="#solution" style="font-weight: 500; margin-left: 0.5rem;"
-								onclick="const bg = document.querySelector('#solution').parentElement; bg.style.backgroundColor = '#94ffb433'; setTimeout(() => bg.style.backgroundColor = '', 500)">
-								Jump to solution
-							</a></span>
+						{%if loop.index0 == 0%}
+						<span style="margin-top: 0.3rem; justify-content: space-between; width: 100%; display: flex;" class="solution-label">
+							<span>
+							{%if post.solved%}
+								<span class="solution-label">✓ Solved</span>
+								<a href="#solution" style="font-weight: 500; margin-left: 0.5rem;"
+									onclick="const bg = document.querySelector('#solution').parentElement; bg.style.backgroundColor = '#94ffb433'; setTimeout(() => bg.style.backgroundColor = '', 500)">
+									Jump to solution
+								</a>
+							{%endif%}
+							</span>
+							<a href="#reply" style="font-weight: 500;">Reply</a>
+						</span>
 						{%endif%}
 					</div>
 				</div>
