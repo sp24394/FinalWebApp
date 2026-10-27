@@ -150,11 +150,11 @@ def view_forum_post(pid):
 
 @app.route("/releases")
 def download_page():
-    return "hi 2"
+    return "im too lazy"
 
 @app.route("/changelogs")
 def changelogs():
-    return "hi 3"
+    return "yeah no im not adding this"
 
 if __name__ == "__main__":
     app.run(debug=True)
